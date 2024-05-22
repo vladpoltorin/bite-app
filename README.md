@@ -14,7 +14,7 @@ A simple React app, that allows you kinda order food. Uses localstorage to store
 
 ## Installation
 
-Run `yarn add` to install the dependencies
+Run `yarn` to install the dependencies
 
 Run `yarn dev` to run the project locally
 
