@@ -10,6 +10,8 @@ import {
   Text,
   Image,
 } from '@chakra-ui/react';
+
+import { ProductDetailsModalTrigger } from './ProductDetailsModal';
 import type { Product } from '../types';
 
 type Props = {
@@ -18,7 +20,7 @@ type Props = {
 };
 
 export const ProductCard = ({ product, onAddProduct }: Props) => {
-  const { price, name, description, imageUrl } = product;
+  const { price, name, imageUrl } = product;
 
   return (
     <Card maxW='sm'>
@@ -30,7 +32,6 @@ export const ProductCard = ({ product, onAddProduct }: Props) => {
         />
         <Stack mt='6' spacing='3'>
           <Heading size='md'>{name}</Heading>
-          <Text>{description}</Text>
           <Text color='blue.600' fontSize='2xl'>
             ${price / 100}
           </Text>
@@ -39,9 +40,7 @@ export const ProductCard = ({ product, onAddProduct }: Props) => {
       <Divider />
       <CardFooter>
         <ButtonGroup spacing='2' justifyContent="space-between" w="full">
-          <Button variant="outline" colorScheme='blue'>
-            Details
-          </Button>
+          <ProductDetailsModalTrigger product={product} onAddProduct={onAddProduct} />
           <Button variant='solid' colorScheme='blue' onClick={() => onAddProduct(product)}>
             Add to cart
           </Button>
