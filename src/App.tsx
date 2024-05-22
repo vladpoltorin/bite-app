@@ -10,15 +10,12 @@ function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const handleAddItem = (product: Product) => {
-    const sameProduct = cartItems.find(cartItem => cartItem.product.id === product.id);
-
-    if (!sameProduct) {
-      setCartItems(prevItems => [...prevItems, { product, quantity: 1 }]);
-    }
+    setCartItems(prevItems => [...prevItems, { product, quantity: 1 }]);
   };
 
   const handleRemoveItem = (id: string) => {
-    setCartItems(prevCartItems => prevCartItems.filter((cartItem) => cartItem.product.id === id));
+    console.log(id, 123, cartItems)
+    setCartItems(prevCartItems => prevCartItems.filter((cartItem) => cartItem.product.id !== id));
   };
 
   const handleChangeQuantity = (index: number, action: QuantityAction) => {
@@ -26,7 +23,7 @@ function App() {
 
     if (action === 'decrement') {
       if (cartItem.quantity === 1) {
-        setCartItems(prev => prev.filter(item => item.product.id === cartItem.product.id ));
+        setCartItems(prev => prev.filter((_, i) => i !== index ));
       } else {
         const items = [...cartItems];
         items[index].quantity -= 1;
