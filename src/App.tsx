@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from '@chakra-ui/react';
 import { v4 as uuid } from 'uuid';
 
@@ -10,6 +10,25 @@ import { Header } from './components/Header';
 function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+    const total = parseFloat(localStorage.getItem('cartTotal') ?? '0');
+    const items = JSON.parse(localStorage.getItem('cartItems') ?? '[]');
+
+    setCartItems(items);
+    setCartTotal(total);
+    setDataLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    // do not reset localstorage on initial render,
+    // wait until data is populated
+    if (dataLoaded) {
+      localStorage.setItem('cartTotal', cartTotal.toString());
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+  }, [cartTotal, cartItems, dataLoaded]);
 
   const handleAddItem = (product: Product) => {
     setCartItems(prevItems => [...prevItems, { product, itemId: uuid(), quantity: 1 }]);
