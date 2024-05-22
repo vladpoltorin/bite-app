@@ -12,7 +12,14 @@ import {
 } from '@chakra-ui/react';
 import type { Product } from './types';
 
-export const ProductCard = ({ price, name, description, imageUrl }: Product) => {
+type Props = {
+  product: Product;
+  onAddProduct: (product: Product) => void;
+};
+
+export const ProductCard = ({ product, onAddProduct }: Props) => {
+  const { price, name, description, imageUrl } = product;
+
   return (
     <Card maxW='sm'>
       <CardBody>
@@ -22,10 +29,10 @@ export const ProductCard = ({ price, name, description, imageUrl }: Product) => 
           borderRadius='lg'
         />
         <Stack mt='6' spacing='3'>
-          <Heading size='md'>Living room Sofa</Heading>
+          <Heading size='md'>{name}</Heading>
           <Text>{description}</Text>
           <Text color='blue.600' fontSize='2xl'>
-            ${price}
+            ${price / 100}
           </Text>
         </Stack>
       </CardBody>
@@ -35,7 +42,7 @@ export const ProductCard = ({ price, name, description, imageUrl }: Product) => 
           <Button variant="outline" colorScheme='blue'>
             Details
           </Button>
-          <Button variant='solid' colorScheme='blue'>
+          <Button variant='solid' colorScheme='blue' onClick={() => onAddProduct(product)}>
             Add to cart
           </Button>
         </ButtonGroup>

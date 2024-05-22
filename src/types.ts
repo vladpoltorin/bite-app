@@ -5,3 +5,10 @@ export type Product = {
   price: number;
   imageUrl: string;
 };
+
+export type CartItem = {
+  product: Product,
+  quantity: number,
+};
+
+export type QuantityAction = 'increment' | 'decrement';
