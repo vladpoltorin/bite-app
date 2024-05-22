@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Container } from '@chakra-ui/react';
 
 import { CartContext } from './CartContext';
-import { ProductList } from './ProductList';
+import { ProductList } from './components/ProductList';
 import type { Product, CartItem, QuantityAction } from './types';
-import { Header} from './Header';
+import { Header} from './components/Header';
 
 function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);

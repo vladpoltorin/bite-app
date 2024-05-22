@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { HStack } from '@chakra-ui/react';
-import { CartContext } from './CartContext';
+import { CartContext } from '../CartContext';
 
-import type { Product } from './types';
-import products from './data.json';
+import type { Product } from '../types';
+import products from '../data.json';
 import { ProductCard } from './ProductCard';
 
 export const ProductList = () => {

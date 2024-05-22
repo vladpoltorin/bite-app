@@ -10,7 +10,7 @@ import {
   Text,
   Image,
 } from '@chakra-ui/react';
-import type { Product } from './types';
+import type { Product } from '../types';
 
 type Props = {
   product: Product;

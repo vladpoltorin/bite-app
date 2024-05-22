@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useContext } from 'react';
 
-import { CartContext } from './CartContext';
+import { CartContext } from '../CartContext';
 
 
 export const Cart = () => {

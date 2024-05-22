@@ -1,7 +1,7 @@
 import { Heading, HStack} from '@chakra-ui/react';
 import { useContext } from 'react';
 import { Cart } from './Cart'; 
-import { CartContext } from './CartContext';
+import { CartContext } from '../CartContext';
 
 export const Header = () => {
   const { items } = useContext(CartContext);
