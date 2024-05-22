@@ -79,6 +79,11 @@ function App() {
     }
   };
 
+  const resetCart = () => {
+    setCartTotal(0);
+    setCartItems([]);
+  };
+
   return (
     <main>
       <CartContext.Provider
@@ -88,6 +93,7 @@ function App() {
           removeItemFromCart: handleRemoveItem,
           changeQuantity: handleChangeQuantity,
           cartTotal,
+          resetCart,
         }}>
         <Header />
         <Container maxW='1280px' centerContent>

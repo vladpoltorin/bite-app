@@ -7,6 +7,7 @@ type CartContext = {
   removeItemFromCart: (itemId: string) => void;
   changeQuantity: (itemId: string, action: QuantityAction) => void;
   cartTotal: number;
+  resetCart: () => void;
 };
 
 export const CartContext = createContext<CartContext>({
@@ -15,4 +16,5 @@ export const CartContext = createContext<CartContext>({
   removeItemFromCart: () => {},
   changeQuantity: () => {},
   cartTotal: 0,
+  resetCart: () => {},
 });

@@ -20,7 +20,12 @@ import { CartContext } from '../CartContext';
 
 
 export const Cart = () => {
-  const { items, removeItemFromCart, changeQuantity, cartTotal } = useContext(CartContext);
+  const { items, removeItemFromCart, changeQuantity, resetCart, cartTotal } = useContext(CartContext);
+
+  const handleCompleteOrder = () => {
+    alert(`You got it! Your order's total is ${cartTotal}`);
+    resetCart();
+  };
 
   return (
     <Popover>
@@ -57,7 +62,7 @@ export const Cart = () => {
             <Button
               w="full"
               bg="green.200"
-              onClick={() => alert('Confirmed')}
+              onClick={handleCompleteOrder}
               isDisabled={items.length === 0}
             >
               Complete Order
