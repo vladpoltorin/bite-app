@@ -33,19 +33,19 @@ export const Cart = () => {
         <PopoverHeader>Current Order</PopoverHeader>
         <PopoverBody>
           <VStack align="flex-start" divider={<Divider />} gap="2">
-            {items.map((item, index) => {
-              const { product, quantity } = item;
+            {items.map((item) => {
+              const { product, quantity, itemId } = item;
 
               return (
-                <HStack justifyContent="space-between" w="full" align="center" key={item.product.id}>
+                <HStack justifyContent="space-between" w="full" align="center" key={itemId}>
                   <Box flexGrow={1}>
                     <p>{product.name}</p>
                     <p>Quanity: {quantity}</p>
                   </Box>
                   <Flex gap={2}>
-                    <Button onClick={() => changeQuantity(index, 'increment')}>+</Button>
-                    <Button onClick={() => changeQuantity(index, 'decrement')}>-</Button>
-                    <Button onClick={() => removeItemFromCart(product.id)}>Remove</Button>
+                    <Button onClick={() => changeQuantity(itemId, 'increment')}>+</Button>
+                    <Button onClick={() => changeQuantity(itemId, 'decrement')}>-</Button>
+                    <Button onClick={() => removeItemFromCart(itemId)}>Remove</Button>
                   </Flex>
                 </HStack>
               );
