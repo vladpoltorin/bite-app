@@ -9,13 +9,18 @@ import { Header } from './components/Header';
 
 function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   const handleAddItem = (product: Product) => {
     setCartItems(prevItems => [...prevItems, { product, itemId: uuid(), quantity: 1 }]);
+    setCartTotal(prevTotal => prevTotal + (product.price / 100));
   };
 
   const handleRemoveItem = (itemId: string) => {
+    const cartItem = cartItems.find(cartItem => cartItem.itemId === itemId);
+
     setCartItems(prevCartItems => prevCartItems.filter((cartItem) => cartItem.itemId !== itemId));
+    setCartTotal(prevTotal => prevTotal - (cartItem?.product.price ?? 0) * (cartItem?.quantity ?? 1) / 100);
   };
 
   const handleChangeQuantity = (itemId: string, action: QuantityAction) => {
@@ -36,6 +41,8 @@ function App() {
           return item;
         }));
       }
+
+      setCartTotal(prevTotal => prevTotal - ((cartItem?.product.price ?? 0) / 100));
     }
 
     if (action === 'increment') {
@@ -49,6 +56,7 @@ function App() {
 
         return item;
       }));
+      setCartTotal(prevTotal => prevTotal + ((cartItem?.product.price ?? 0) / 100));
     }
   };
 
@@ -59,7 +67,8 @@ function App() {
           items: cartItems,
           addItemToCart: handleAddItem,
           removeItemFromCart: handleRemoveItem,
-          changeQuantity: handleChangeQuantity
+          changeQuantity: handleChangeQuantity,
+          cartTotal,
         }}>
         <Header />
         <Container maxW='1280px' centerContent>

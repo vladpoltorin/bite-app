@@ -20,7 +20,7 @@ import { CartContext } from '../CartContext';
 
 
 export const Cart = () => {
-  const { items, removeItemFromCart, changeQuantity } = useContext(CartContext);
+  const { items, removeItemFromCart, changeQuantity, cartTotal } = useContext(CartContext);
 
   return (
     <Popover>
@@ -53,8 +53,15 @@ export const Cart = () => {
           </VStack>
 
           <VStack align="flex-start" mt="10">
-            <Text fontWeight={700}>Total: 123</Text>
-            <Button w="full" bg="green.200" onClick={() => alert('Confirmed')}>Complete Order</Button>
+            <Text fontWeight={700}>Total: ${cartTotal.toFixed(2)}</Text>
+            <Button
+              w="full"
+              bg="green.200"
+              onClick={() => alert('Confirmed')}
+              isDisabled={items.length === 0}
+            >
+              Complete Order
+            </Button>
           </VStack>
         </PopoverBody>
       </PopoverContent>
